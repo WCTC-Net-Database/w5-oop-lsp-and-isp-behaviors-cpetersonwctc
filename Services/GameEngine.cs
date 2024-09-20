@@ -8,12 +8,16 @@ namespace W5_assignment_template.Services
         private readonly IEntity _character;
         private readonly IEntity _goblin;
         private readonly IEntity _ghost;
+        private readonly IEntity _rngesus;
+        private readonly IEntity _keyboardWarrior;
 
-        public GameEngine(IEntity character, IEntity goblin, IEntity ghost)
+        public GameEngine(IEntity character, IEntity goblin, IEntity ghost, IEntity rngesus, IEntity keyboardWarrior)
         {
             _character = character;
             _goblin = goblin;
             _ghost = ghost;
+            _rngesus = rngesus;
+            _keyboardWarrior = keyboardWarrior;
         }
 
         public void Run()
@@ -21,6 +25,8 @@ namespace W5_assignment_template.Services
             _character.Name = "Hero";
             _goblin.Name = "Goblin";
             _ghost.Name = "Ghost";
+            _rngesus.Name = "Dungeon Master";
+            _keyboardWarrior.Name = "Twitter (AKA. 'X') user";
 
             _character.Move();
             _character.Attack(_goblin);
@@ -30,7 +36,14 @@ namespace W5_assignment_template.Services
 
             _ghost.Move();
             _ghost.Attack(_character);
-            ((Ghost) _ghost).Fly();
+            if (_ghost is IFlyable)
+            {
+                ((IFlyable)_ghost).Fly();
+            }
+
+            ((RNGesus)_rngesus).RollDice(_character);
+
+            ((KeyboardWarrior)_keyboardWarrior).BeAngry(_goblin);
         }
     }
 }

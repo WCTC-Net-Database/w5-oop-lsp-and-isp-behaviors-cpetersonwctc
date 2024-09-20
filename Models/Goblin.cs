@@ -11,11 +11,6 @@ namespace W5_assignment_template.Models
             Console.WriteLine($"{Name} attacks {target.Name} with a terrifying shout.");
         }
 
-        public void Fly()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Move()
         {
             Console.WriteLine($"{Name} moves aggressively.");
